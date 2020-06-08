@@ -1,5 +1,6 @@
 package ru.volnenko.se.command.data.xml;
 
+import org.springframework.stereotype.Component;
 import ru.volnenko.se.command.AbstractCommand;
 import ru.volnenko.se.constant.DataConstant;
 
@@ -9,7 +10,8 @@ import java.nio.file.Files;
 /**
  * @author Denis Volnenko
  */
-public final class DataXmlClearCommand extends AbstractCommand {
+@Component
+public final class DataXmlClearCommand implements AbstractCommand {
 
     @Override
     public String command() {

@@ -1,11 +1,13 @@
 package ru.volnenko.se.command.project;
 
+import org.springframework.stereotype.Component;
 import ru.volnenko.se.command.AbstractCommand;
 
 /**
  * @author Denis Volnenko
  */
-public final class ProjectRemoveCommand extends AbstractCommand {
+@Component
+public final class ProjectRemoveCommand implements AbstractCommand {
 
     @Override
     public String command() {

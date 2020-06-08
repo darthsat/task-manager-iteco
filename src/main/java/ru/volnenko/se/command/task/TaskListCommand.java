@@ -1,12 +1,21 @@
 package ru.volnenko.se.command.task;
 
+import org.springframework.stereotype.Component;
+import ru.volnenko.se.api.repository.ITaskRepository;
 import ru.volnenko.se.command.AbstractCommand;
 import ru.volnenko.se.entity.Task;
 
 /**
  * @author Denis Volnenko
  */
-public final class TaskListCommand extends AbstractCommand {
+@Component
+public final class TaskListCommand implements AbstractCommand {
+
+    private final ITaskRepository taskRepository;
+
+    public TaskListCommand(ITaskRepository taskRepository) {
+        this.taskRepository = taskRepository;
+    }
 
     @Override
     public String command() {
@@ -22,7 +31,7 @@ public final class TaskListCommand extends AbstractCommand {
     public void execute() {
         System.out.println("[TASK LIST]");
         int index = 1;
-        for (Task task: bootstrap.getTaskRepository().getListTask()) {
+        for (Task task: taskRepository.getListTask()) {
             System.out.println(index + ". " + task.getName());
             index++;
         }

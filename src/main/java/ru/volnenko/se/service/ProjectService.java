@@ -1,8 +1,8 @@
 package ru.volnenko.se.service;
 
+import org.springframework.stereotype.Service;
 import ru.volnenko.se.api.repository.IProjectRepository;
 import ru.volnenko.se.entity.Project;
-import ru.volnenko.se.repository.ProjectRepository;
 
 import java.util.Collection;
 import java.util.List;
@@ -10,6 +10,7 @@ import java.util.List;
 /**
  * @author Denis Volnenko
  */
+@Service
 public final class ProjectService implements ru.volnenko.se.api.service.IProjectService {
 
     private final IProjectRepository projectRepository;

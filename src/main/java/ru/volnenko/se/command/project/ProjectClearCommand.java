@@ -1,11 +1,20 @@
 package ru.volnenko.se.command.project;
 
+import org.springframework.stereotype.Component;
+import ru.volnenko.se.api.repository.IProjectRepository;
 import ru.volnenko.se.command.AbstractCommand;
 
 /**
  * @author Denis Volnenko
  */
-public final class ProjectClearCommand extends AbstractCommand {
+@Component
+public final class ProjectClearCommand implements AbstractCommand {
+
+    private final IProjectRepository projectRepository;
+
+    public ProjectClearCommand(IProjectRepository projectRepository) {
+        this.projectRepository = projectRepository;
+    }
 
     @Override
     public String command() {
@@ -19,7 +28,7 @@ public final class ProjectClearCommand extends AbstractCommand {
 
     @Override
     public void execute() {
-        bootstrap.getProjectRepository().clear();
+        projectRepository.clear();
         System.out.println("[ALL PROJECTS REMOVED]");
     }
 

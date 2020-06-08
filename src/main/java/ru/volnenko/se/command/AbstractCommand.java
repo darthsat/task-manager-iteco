@@ -1,28 +1,14 @@
 package ru.volnenko.se.command;
 
-import ru.volnenko.se.controller.Bootstrap;
-
-import java.io.IOException;
-
 /**
  * @author Denis Volnenko
  */
-public abstract class AbstractCommand {
+public interface AbstractCommand {
 
-    protected Bootstrap bootstrap;
+    void execute() throws Exception;
 
-    public Bootstrap getBootstrap() {
-        return bootstrap;
-    }
+    String command();
 
-    public void setBootstrap(Bootstrap bootstrap) {
-        this.bootstrap = bootstrap;
-    }
-
-    public abstract void execute() throws Exception;
-
-    public abstract String command();
-
-    public abstract String description();
+    String description();
 
 }

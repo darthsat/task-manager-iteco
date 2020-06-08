@@ -1,11 +1,21 @@
 package ru.volnenko.se.command.system;
 
+import org.springframework.stereotype.Component;
 import ru.volnenko.se.command.AbstractCommand;
+
+import java.util.List;
 
 /**
  * @author Denis Volnenko
  */
-public final class HelpCommand extends AbstractCommand {
+@Component
+public final class HelpCommand implements AbstractCommand {
+
+    private final List<AbstractCommand> commandList;
+
+    public HelpCommand(List<AbstractCommand> commandList) {
+        this.commandList = commandList;
+    }
 
     @Override
     public String command() {
@@ -19,7 +29,7 @@ public final class HelpCommand extends AbstractCommand {
 
     @Override
     public void execute() {
-        for (AbstractCommand command: bootstrap.getListCommand()) {
+        for (AbstractCommand command: commandList) {
             System.out.println(command.command()+ ": " + command.description());
         }
     }
