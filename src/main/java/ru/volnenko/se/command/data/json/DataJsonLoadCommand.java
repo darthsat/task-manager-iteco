@@ -1,9 +1,11 @@
 package ru.volnenko.se.command.data.json;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 import ru.volnenko.se.api.service.IDomainService;
 import ru.volnenko.se.command.AbstractCommand;
+import ru.volnenko.se.command.CommandEvent;
 import ru.volnenko.se.constant.DataConstant;
 import ru.volnenko.se.entity.Domain;
 
@@ -51,6 +53,12 @@ public final class DataJsonLoadCommand implements AbstractCommand {
         final boolean check = file.exists();
         if (!check) System.out.println("FILE NOT FOUND");
         return check;
+    }
+
+    @Override
+    @EventListener(condition = "#event.command eq 'data-json-load'")
+    public void processEvent(CommandEvent event) throws Exception {
+        execute();
     }
 
 }

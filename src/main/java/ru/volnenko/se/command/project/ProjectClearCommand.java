@@ -1,8 +1,10 @@
 package ru.volnenko.se.command.project;
 
+import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 import ru.volnenko.se.api.repository.IProjectRepository;
 import ru.volnenko.se.command.AbstractCommand;
+import ru.volnenko.se.command.CommandEvent;
 
 /**
  * @author Denis Volnenko
@@ -30,6 +32,12 @@ public final class ProjectClearCommand implements AbstractCommand {
     public void execute() {
         projectRepository.clear();
         System.out.println("[ALL PROJECTS REMOVED]");
+    }
+
+    @Override
+    @EventListener(condition = "#event.command eq 'project-clear'")
+    public void processEvent(CommandEvent event)  {
+        execute();
     }
 
 }

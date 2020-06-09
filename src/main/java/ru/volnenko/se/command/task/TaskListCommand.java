@@ -1,8 +1,10 @@
 package ru.volnenko.se.command.task;
 
+import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 import ru.volnenko.se.api.repository.ITaskRepository;
 import ru.volnenko.se.command.AbstractCommand;
+import ru.volnenko.se.command.CommandEvent;
 import ru.volnenko.se.entity.Task;
 
 /**
@@ -25,6 +27,12 @@ public final class TaskListCommand implements AbstractCommand {
     @Override
     public String description() {
         return "Show all tasks.";
+    }
+
+    @Override
+    @EventListener(condition = "#event.command eq 'task-list'")
+    public void processEvent(CommandEvent event)  {
+        execute();
     }
 
     @Override

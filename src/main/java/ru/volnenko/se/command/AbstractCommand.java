@@ -11,4 +11,5 @@ public interface AbstractCommand {
 
     String description();
 
+    void processEvent(CommandEvent event) throws Exception;
 }
